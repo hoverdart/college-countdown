@@ -1,3 +1,4 @@
+"use client";
 const arrayThing = [
     'The years teach much which the days never know. - Ralph Waldo Emerson',
     'It has never been my object to record my dreams, just to realize them. - Man Ray',
