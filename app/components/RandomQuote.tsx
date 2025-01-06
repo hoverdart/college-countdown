@@ -1,4 +1,4 @@
-var arrayThing = [
+const arrayThing = [
     'The years teach much which the days never know. - Ralph Waldo Emerson',
     'It has never been my object to record my dreams, just to realize them. - Man Ray',
     'Ceasing to do evil, Cultivating the good, Purifying the heart: This is the teaching of the Buddhas. - The Buddha',
@@ -52,7 +52,7 @@ var arrayThing = [
 ]
 
 export default function RandomQuote() {
-    var random = arrayThing[Math.floor(Math.random() * arrayThing.length)]
+    const random = arrayThing[Math.floor(Math.random() * arrayThing.length)]
     return (
       <>
         <h5 className="text-md font-bold text-gray-400 ">{random}</h5>

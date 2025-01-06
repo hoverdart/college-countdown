@@ -1,4 +1,3 @@
-import Image from "next/image";
 import RandomQuote from "./components/RandomQuote"
 import CollegeTable from "./components/CollegeTable"
 
