@@ -52,10 +52,9 @@ const arrayThing = [
 ]
 
 export default function RandomQuote() {
-    const random = arrayThing[Math.floor(Math.random() * arrayThing.length)]
     return (
       <>
-        <h5 className="text-md font-bold text-gray-400 ">{random}</h5>
+        <h5 className="text-md font-bold text-gray-400 ">{arrayThing[Math.floor(Math.random() * arrayThing.length)]}</h5>
       </>
     );
   }
