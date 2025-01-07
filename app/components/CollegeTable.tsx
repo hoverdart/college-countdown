@@ -16,8 +16,8 @@ function formatDate(isoDate: string | number | Date) {
 }
 const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
 const easternTimeInMS = Date.parse(easternTime);
-let passedDecisions: string[][] = [];
-let decisions: string[][] = [];
+const passedDecisions: string[][] = [];
+const decisions: string[][] = [];
 for(let i=0; i<collegeDecisions.length; i++){
     const dater = new Date(collegeDecisions[i][2]);
     if(dater.getTime() - easternTimeInMS < 0){
