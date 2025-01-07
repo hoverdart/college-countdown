@@ -49,9 +49,64 @@ const arrayThing = [
     "Some people thrive on huge, dramatic change. Some people prefer the slow and steady route. Do what's right for you. - Julie Morgenstern",
     'Love demands infinitely less than friendship. - George Jean Nathan',
     'The more you care, the stronger you can be. - Jim Rohn',
-    'Everything that irritates us about others can lead us to an understanding of ourselves. - Carl Jung'
+    'Everything that irritates us about others can lead us to an understanding of ourselves. - Carl Jung',
+    'Our virtues and our failings are inseparable, like force and matter. When they separate, man is no more. - Nikola Tesla',
+  'To enjoy life, we must touch much of it lightly. - Voltaire',
+  'A successful person is one who can lay a firm foundation with the bricks that others throw at him or her. - David Brinkley',
+  'To give oneself earnestly to the duties due to men, and, while respecting spiritual beings, to keep aloof from them, may be called wisdom. - Confucius',
+  'Be slow of tongue and quick of eye. - Miguel de Cervantes',
+  'Meditate … do not delay, lest you later regret it. - The Buddha',
+  'One of the most beautiful qualities of true friendship is to understand and to be understood. - Seneca the Younger',
+  'The World is my country, all mankind are my brethren, and to do good is my religion. - Thomas Paine',
+  'Before you put on a frown, make absolutely sure there are no smiles available. - James M. Beggs',
+  'Reason and free inquiry are the only effectual agents against error. - Thomas Jefferson',
+  'Technology… is a queer thing. It brings you great gifts with one hand, and it stabs you in the back with the other. - Carrie Snow',
+  'You are important enough to ask and you are blessed enough to receive back. - Wayne Dyer',
+  'Sooner or later, those who win are those who think they can. - Richard Bach',
+  'The friend who can be silent with us in a moment of despair or confusion, who can stay with us in an hour of grief and bereavement, who can tolerate not knowing... not healing, not curing... that is a friend who cares. - Henri Nouwen',
+  'We are all something, but none of us are everything. - Blaise Pascal',
+  'We could never learn to be brave and patient if there were only joy in the world. - Helen Keller',
+  "It isn't what happens to us that causes us to suffer; it's what we say to ourselves about what happens. - Pema Chödrön",
+  "I don't look to jump over 7-foot bars; I look around for 1-foot bars that I can step over. - Warren Buffett",
+  'There are two kinds of failures: those who thought and never did, and those who did and never thought. - Laurence J. Peter',
+  'Self-trust is the first secret of success. - Ralph Waldo Emerson',
+  'In friendship as well as love, ignorance very often contributes more to our happiness than knowledge. - François de La Rochefoucauld',
+  "Don't be dismayed by good-byes. A farewell is necessary before you can meet again. And meeting again, after moments or lifetimes, is certain for those who are friends. - Richard Bach",
+  'What lies behind us and what lies before us are small matters compared to what lies within us. - Oliver Wendell Holmes Jr.',
+  'Radiate boundless love towards the entire world — above, below, and across — unhindered, without ill will, without enmity. - The Buddha',
+  'Science gives us knowledge, but only philosophy can give us wisdom. - Will Durant',
+  'Ever tried. Ever failed. No matter. Try Again. Fail again. Fail better. - Samuel Beckett',
+  'Life is so constructed that an event does not, cannot, will not, match the expectation. - Charlotte Brontë',
+  'Difficulties are things that show a person what they are. - Epictetus',
+  "Ignorant men don't know what good they hold in their hands until they've flung it away. - Sophocles",
+  'The pessimist complains about the wind; the optimist expects it to change; the realist adjusts the sails. - William Arthur Ward',
+  'Action is the foundational key to all success. - Pablo Picasso',
+  'All action results from thought, so it is thoughts that matter. - Sai Baba',
+  'Error is discipline through which we advance. - William Ellery Channing',
+  'Permanence, perseverance and persistence in spite of all obstacles, discouragements, and impossibilities: It is this, that in all things distinguishes the strong soul from the weak. - Thomas Carlyle',
+  'We are what our thoughts have made us; so take care about what you think. Words are secondary. Thoughts live; they travel far. - Swami Vivekananda',
+  'You learn to speak by speaking, to study by studying, to run by running, to work by working; in just the same way, you learn to love by loving. - Anatole France',
+  'These days people seek knowledge, not wisdom. Knowledge is of the past; wisdom is of the future. - Vernon Cooper',
+  'Being in humaneness is good. If we select other goodness and thus are far apart from humaneness, how can we be the wise? - Confucius',
+  'If I were two-faced, would I be wearing this one? - Abraham Lincoln',
+  'Never idealize others. They will never live up to your expectations. - Leo Buscaglia',
+  'Intuition will tell the thinking mind where to look next. - Jonas Salk',
+  'The supreme art of war is to subdue the enemy without fighting. - Sun Tzu',
+  'A little more persistence, a little more effort, and what seemed hopeless failure may turn to glorious success. - Elbert Hubbard',
+  'I am like a falling star who has finally found her place next to another in a lovely constellation, where we will sparkle in the heavens forever. - Amy Tan',
+  'Knowing your own darkness is the best method for dealing with the darkness of other people. - Carl Jung',
+  'TV and the Internet are good because they keep stupid people from spending too much time out in public. - Douglas Coupland',
+  'Now this is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning. - Winston Churchill',
+  'Three things in human life are important. The first is to be kind. The second is to be kind. The third is to be kind. - Henry James',
+  'Think big thoughts but relish small pleasures. - H. Jackson Brown Jr.',
+  'Friendship marks a life even more deeply than love. Love risks degenerating into obsession, friendship is never anything but sharing. - Elie Wiesel',
 ]
-
+//const moreQuotes = []
+//var allQuotes = []
+//for(var i=0; i<moreQuotes.length; i++){
+  //allQuotes.push(moreQuotes[i].content + ' - '+moreQuotes[i].author);
+//}
+//console.log(allQuotes)
 export default function RandomQuote() {
     return (
       <>
