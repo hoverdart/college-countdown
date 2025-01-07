@@ -16,10 +16,10 @@ function formatDate(isoDate: string | number | Date) {
 }
 const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
 const easternTimeInMS = Date.parse(easternTime);
-var passedDecisions: string[][] = [];
-var decisions: string[][] = [];
-for(var i=0; i<collegeDecisions.length; i++){
-    let dater = new Date(collegeDecisions[i][2]);
+let passedDecisions: string[][] = [];
+let decisions: string[][] = [];
+for(let i=0; i<collegeDecisions.length; i++){
+    const dater = new Date(collegeDecisions[i][2]);
     if(dater.getTime() - easternTimeInMS < 0){
         passedDecisions.push(collegeDecisions[i]);
     }else{
