@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
   const dater = new Date(tilThisDate);
   const calculateTimeLeft = () => {
-    const time = dater.getTime() - Date.now();
+    const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
+    const easternTimeInMS = Date.parse(easternTime)
+    const time = dater.getTime() - easternTimeInMS; //Date.now()
     let timeLeft: {
       Months?: number;
       days?: number;
