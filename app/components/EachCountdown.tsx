@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-
 const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
   const dater = new Date(tilThisDate);
-
-  // Function to calculate the time left
   const calculateTimeLeft = () => {
     const time = dater.getTime() - Date.now();
     let timeLeft: {
@@ -16,7 +13,6 @@ const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
     } = {};
 
     if (time > 0) {
-      // Approximating months as 30.44 days (average considering leap years)
       timeLeft = {
         Months: Math.floor(time / (1000 * 60 * 60 * 24 * 30.44)),
         days: Math.floor((time / (1000 * 60 * 60 * 24)) % 30.44),
@@ -34,7 +30,7 @@ const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
   // Array to store timer components
   const timerComponents: React.ReactNode[] = [];
 
-  Object.keys(timeLeft).forEach((interval, index) => {
+  Object.keys(timeLeft).forEach((interval) => {
     const key = interval as keyof typeof timeLeft;
 
     if (timeLeft[key] !== undefined && timeLeft[key] !== 0) {
@@ -61,5 +57,4 @@ const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
     </>
   );
 };
-
 export default CountdownTimer;
