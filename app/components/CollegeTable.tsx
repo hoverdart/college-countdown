@@ -9,7 +9,7 @@ function formatDate(isoDate: string | number | Date) {
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false // 24-hour format
+        hour12: true // 24-hour format
       }).replace(',', '');
 }
 
