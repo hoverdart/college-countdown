@@ -3,15 +3,6 @@ import Link from 'next/link';
 import { IoHomeOutline, IoSchoolOutline } from "react-icons/io5";
 import RandomQuote from "./RandomQuote"
 
-const navItems = {
-  '/':{
-    name: "Home"
-  },
-  '/myColleges':{
-    name: "My Colleges"
-  }
-}
-
 export default function NavBar() {
     return (
         <div className="flex flex-row items-start justify-between gap-2 sm:px-6 sm:pt-6 font-[family-name:var(--font-geist-sans)]">
