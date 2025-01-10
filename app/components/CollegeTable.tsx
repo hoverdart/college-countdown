@@ -20,7 +20,7 @@ const passedDecisions: string[][] = [];
 const decisions: string[][] = [];
 for(let i=0; i<collegeDecisions.length; i++){
     const dater = new Date(collegeDecisions[i][2]);
-    if(dater.getTime() - easternTimeInMS < 0){
+    if(dater.getTime() - easternTimeInMS < -259200000){
         passedDecisions.push(collegeDecisions[i]);
     }else{
         decisions.push(collegeDecisions[i]);
@@ -32,7 +32,7 @@ export default function CollegeTable() {
   const [isTableVisible, setIsTableVisible] = useState(false);
   return (
     <>
-    <div className= "relative rounded-xl overflow-auto py-4 shadow-lg">
+    <div className= "relative rounded-xl overflow-auto pb-2 shadow-lg">
     <table className="border-collapse table-fixed w-full text-md">
         <thead className="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr className = "border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
@@ -44,7 +44,7 @@ export default function CollegeTable() {
         </thead>
         <tbody className = "bg-white dark:bg-slate-800">
             {decisions.map((eachElement, index) => (
-                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 pressable">
                     <td>{eachElement[0]}</td>
                     <td>
                     {eachElement[1]} {eachElement[3] !== "" && ` (${eachElement[3]})`}</td>
