@@ -1,7 +1,7 @@
 import { JSDOM } from "jsdom";
 import { dummyData } from "./dummyData";
 // Refetch every 4 hours
-export let revalidate = 60 * 60 * 4;
+export const revalidate = 60 * 60 * 4;
 
 export type RawData = {
     Name: string;
@@ -34,8 +34,7 @@ function tableToJson(table: HTMLTableElement) {
     const rowData = {};
     cells.forEach((cell, index) => {
       const content = getTextWithSpaces(cell);
-
-      // @ts-expect-error
+      // @ts-expect-error string explicitly has an any type
       rowData[headers[index]] = content || "";
     });
     jsonData.push(rowData);
@@ -47,7 +46,7 @@ function tableToJson(table: HTMLTableElement) {
 // ChatGPT
 function getTextWithSpaces(node: Node) {
   // Initialize an empty array to hold the text
-  let textArray: string[] = [];
+  const textArray: string[] = [];
 
   // Iterate over the child nodes
   node.childNodes.forEach((child) => {
@@ -72,10 +71,10 @@ function getTextWithSpaces(node: Node) {
 }
 
 function rawDataToData(rawData: RawData): Data {
-  let preData: Data = [];
+  const preData: Data = [];
 
-  let ids: string[] = [];
-  let timesDuplicateIdOccurred: { [id: string]: number } = {};
+  const ids: string[] = [];
+  const timesDuplicateIdOccurred: { [id: string]: number } = {};
 
   for (const college of rawData) {
     const name = college.Name.startsWith("🎓 ")
