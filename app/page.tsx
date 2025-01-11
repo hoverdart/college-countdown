@@ -1,12 +1,36 @@
 import CollegeTable from "./components/CollegeTable";
 import NavBar from "./components/nav"
-export default function Home() {
+import {data} from "./dataArrs"
 
+export type Data = {
+  name: string;
+  tag: string;
+  decisionDate: string;
+  notes: string;
+  /** Name + tag */
+  id: string;
+}[];
+
+//const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
+const easternTimeInMS = Date.now(); //.parse(easternTime)
+const passedDecisions: Data = [];
+const decisions: Data = [];
+for(let i=0; i<data.length; i++){
+    const dater = new Date(data[i].decisionDate);
+    if(dater.getTime() - easternTimeInMS < -259200000){
+        passedDecisions.push(data[i]);
+    }else{
+        decisions.push(data[i]);
+    }
+}
+passedDecisions.reverse();
+
+export default function Home() {
   return (
     <>
     <NavBar />
     <div className="p-6 font-[family-name:var(--font-geist-sans)]">
-        <CollegeTable />
+        <CollegeTable colDecisions={decisions} colPastDecisions={passedDecisions} />
       </div>
     </>
       
