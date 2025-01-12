@@ -2,7 +2,6 @@
 import { selectedCols } from "../atoms"
 import { useAtom } from 'jotai';
 import {Data} from "../dataArrs";
-import Image from 'next/image';
 import EachCountdown from "./EachCountdown";
 
 function formatDate(isoDate: string | number | Date) {
