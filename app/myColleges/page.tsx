@@ -3,6 +3,7 @@ import {data} from "../dataArrs"
 import MyColleges from "../components/MyColleges"
 
 export default function Home() { //quote is gray-400
+  console.log(data)
   return (
     <>
     <NavBar />

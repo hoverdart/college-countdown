@@ -121,77 +121,81 @@ function rawDataToData(rawData: RawData): Data {
 }
 
 function rawDateToDateString(rawDate: string): string {
-    const standardOffsets = {
-      EST: "-0500",
-      CST: "-0600",
-      MST: "-0700",
-      PST: "-0800",
-      AKST: "-0900",
-      HST: "-1000", // Hawaii doesn't observe DST
-    };
-  
-    function isDST(date: Date) {
-      // Get year from date
-      const year = date.getFullYear();
-  
-      // DST starts second Sunday in March
-      const dstStart = new Date(year, 2, 1); // March 1
-      dstStart.setDate(1 + ((14 - dstStart.getDay()) % 7) + 7); // Second Sunday
-  
-      // DST ends first Sunday in November
-      const dstEnd = new Date(year, 10, 1); // November 1
-      dstEnd.setDate(1 + ((7 - dstEnd.getDay()) % 7)); // First Sunday
-  
-      // Check if date is within DST period
-      return date >= dstStart && date < dstEnd;
+  const standardOffsets = {
+    EST: "-0500",
+    CST: "-0600",
+    MST: "-0700",
+    PST: "-0800",
+    AKST: "-0900",
+    HST: "-1000", // Hawaii doesn't observe DST
+  };
+
+  function isDST(date: Date, timezone: string) {
+    if (timezone !== "EST" && timezone !== "EDT") {
+      return false; // DST check only for EST/EDT
     }
-  
-    function getTimezoneOffset(
-      timezone: keyof typeof standardOffsets,
-      date: Date
-    ) {
-      if (timezone === "HST") return standardOffsets.HST; // Hawaii doesn't do DST
-  
-      const standardOffset = standardOffsets[timezone];
-      if (!standardOffset) return null;
-  
-      // During DST, move forward one hour (subtract 1 from offset)
-      return isDST(date)
-        ? `${standardOffset.slice(0, 1)}${String(
-            parseInt(standardOffset.slice(1)) - 100
-          ).padStart(4, "0")}`
-        : standardOffset;
-    }
-  
-    try {
-      const tzMatch = rawDate.match(/\(([A-Z]+)\)/);
-      if (!tzMatch) {
-        return new Date(rawDate).toISOString();
-      }
-  
-      const timezone = tzMatch[1];
-      const cleanDateStr = rawDate.replace(/\s*\([A-Z]+\)/, "");
-  
-      // First create a date object without timezone to get the date
-      const tempDate = new Date(cleanDateStr);
-  
-      // Now get the correct offset based on the date
-      const offset = getTimezoneOffset(
-        timezone as keyof typeof standardOffsets,
-        tempDate
-      );
-      if (!offset) {
-        console.error(`Unknown timezone: ${timezone}`);
-        return new Date(cleanDateStr).toISOString(); // Return a fallback ISO string
-      }
-  
-      // Create final date with correct offset
-      return new Date(`${cleanDateStr} GMT${offset}`).toISOString();
-    } catch (error) {
-      console.error(`Error parsing date: ${rawDate}`, error);
-      return rawDate; // Return the raw input if it cannot be parsed
-    }
+
+    // Get year from date
+    const year = date.getFullYear();
+
+    // DST starts second Sunday in March
+    const dstStart = new Date(year, 2, 1); // March 1
+    dstStart.setDate(1 + ((14 - dstStart.getDay()) % 7) + 7); // Second Sunday
+
+    // DST ends first Sunday in November
+    const dstEnd = new Date(year, 10, 1); // November 1
+    dstEnd.setDate(1 + ((7 - dstEnd.getDay()) % 7)); // First Sunday
+
+    // Check if date is within DST period
+    return date >= dstStart && date < dstEnd;
   }
+
+  function getTimezoneOffset(
+    timezone: keyof typeof standardOffsets,
+    date: Date
+  ) {
+    if (timezone === "HST") return standardOffsets.HST; // Hawaii doesn't do DST
+
+    const standardOffset = standardOffsets[timezone];
+    if (!standardOffset) return null;
+
+    // During DST, move forward one hour (subtract 1 from offset)
+    return isDST(date, timezone)
+      ? `${standardOffset.slice(0, 1)}${String(
+          parseInt(standardOffset.slice(1)) - 100
+        ).padStart(4, "0")}`
+      : standardOffset;
+  }
+
+  try {
+    // Assume PST if no timezone is provided
+    const tzMatch = rawDate.match(/\(([A-Z]+)\)/);
+    const timezone = tzMatch ? tzMatch[1] : "PST"; // Default to PST if no timezone info
+    const cleanDateStr = rawDate.replace(/\s*\([A-Z]+\)/, "");
+
+    // First create a date object without timezone to get the date
+    const tempDate = new Date(cleanDateStr);
+
+    // Now get the correct offset based on the date
+    const offset = getTimezoneOffset(
+      timezone as keyof typeof standardOffsets,
+      tempDate
+    );
+    if (!offset) {
+      console.error(`Unknown timezone: ${timezone}`);
+      return new Date(cleanDateStr).toISOString(); // Return a fallback ISO string
+    }
+
+    // Adjust the date string by adding the correct time zone offset (PST assumed)
+    return new Date(`${cleanDateStr} GMT${offset}`).toISOString();
+  } catch (error) {
+    console.error(`Error parsing date: ${rawDate}`, error);
+    return rawDate; // Return the raw input if it cannot be parsed
+  }
+}
+
+
+
 
 const fetchData = async () => {
     if (process.env.NODE_ENV === 'development') {
