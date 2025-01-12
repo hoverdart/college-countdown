@@ -55,7 +55,7 @@ const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
 
   return (
     <>
-      {timerComponents.length ? timerComponents : <span className="font-bold text-red-800">It is Time.</span>}
+      {timerComponents.length ? timerComponents : <span className="font-bold text-red-600">It is Time.</span>}
     </>
   );
 };

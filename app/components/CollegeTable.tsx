@@ -1,6 +1,8 @@
 "use client";
 import EachCountdown from "./EachCountdown";
 import React, { useState } from 'react';
+import { useAtom } from 'jotai';
+import { selectedCols } from "../atoms"
 
 function formatDate(isoDate: string | number | Date) {
     const date = new Date(isoDate);
@@ -24,6 +26,17 @@ export type Data = {
 
 export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisions:Data, colPastDecisions:Data}) {
   const [isTableVisible, setIsTableVisible] = useState(false);
+  const [cols, setSelectedCols] = useAtom(selectedCols);
+  const handleDoubleClick = (colID: string) => {
+    setSelectedCols((prevCols) => {
+      if (prevCols.includes(colID)) {
+        return prevCols.filter((id) => id !== colID);
+      }
+      return [...prevCols, colID];
+    });
+  };
+  const selectedCSS = "bg-sky-100 border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600";
+  const unselectedCSS = "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
   return (
     <>
     <div className= "relative rounded-xl overflow-auto pb-2 shadow-lg">
@@ -38,7 +51,7 @@ export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisi
         </thead>
         <tbody className = "bg-white dark:bg-slate-800">
             {colDecisions.map((eachElement, index) => (
-                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 pressable">
+                <tr key={index} className={cols.includes(eachElement.id) ? selectedCSS : unselectedCSS} onDoubleClick={()=>handleDoubleClick(eachElement.id)}>
                     <td>{eachElement.name}</td>
                     <td>
                     {eachElement.tag} {eachElement.notes !== "" && ` (${eachElement.notes})`}</td>
@@ -51,7 +64,7 @@ export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisi
         </tbody>
     </table>
     </div>
-    <h5 className="text-lg font-bold text-red-400 hover:text-gray-400" onClick={() => {setIsTableVisible(!isTableVisible)}}>Click to See Past College Deadlines</h5>
+    <h5 className="text-lg font-bold text-red-400 hover:text-gray-400 pt-4 transition-all hover:underline" onClick={() => {setIsTableVisible(!isTableVisible)}}>Click to See Past College Deadlines</h5>
     {isTableVisible ? 
     <div className= "relative rounded-xl overflow-auto py-4 shadow-lg">
     <table className="border-collapse table-fixed w-full text-md">
@@ -64,7 +77,7 @@ export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisi
         </thead>
         <tbody className = "bg-white dark:bg-slate-800">
             {colPastDecisions.map((eachElement, index) => (
-                <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr key={index} className={cols.includes(eachElement.id) ? selectedCSS : unselectedCSS} onDoubleClick={()=>handleDoubleClick(eachElement.id)}>
                     <td>{eachElement.name}</td>
                     <td>
                     {eachElement.tag} {eachElement.notes !== "" && ` (${eachElement.notes})`}</td>
