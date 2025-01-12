@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 # Welcome to the College Countdown.
 
 This website, created with Next.js and some plentiful open-sourcing from [armaan](https://armaan.cc), takes data from Applying to College's [Decision Calendar](https://applyingto.college/decision-calendar) for the current year to display colleges and their due dates, as well as a countdown for their due dates. 
