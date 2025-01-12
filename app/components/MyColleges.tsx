@@ -2,6 +2,7 @@
 import { selectedCols } from "../atoms"
 import { useAtom } from 'jotai';
 import {Data} from "../dataArrs";
+import Image from 'next/image';
 import EachCountdown from "./EachCountdown";
 
 function formatDate(isoDate: string | number | Date) {
@@ -32,8 +33,8 @@ export default function MyColleges({allColleges}:{allColleges:Data}){
     return( //src={`/get-favicon/${encodeURIComponent(college.name + " Website")}`}
         <>
         {selectedColleges.map((eachElement, index) => (
-        <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600" onDoubleClick={()=>handleDoubleClick(eachElement!.id)}>
-            <img src={`/get-favicon/${encodeURIComponent(eachElement!.name + " Website")}`} alt="College Name" className="w-full h-32 object-contain max-w-xs max-h-xs rounded-md mb-4"/> {/*Placeholder*/}
+        <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600" key={index} onDoubleClick={()=>handleDoubleClick(eachElement!.id)}>
+            <Image src={`/get-favicon/${encodeURIComponent(eachElement!.name + " Website")}`} alt="College Name" className="w-full h-40 object-contain max-w-xs max-h-xs rounded-md mb-4" width="40" height="40" /> 
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 {eachElement!.name}
@@ -50,8 +51,7 @@ export default function MyColleges({allColleges}:{allColleges:Data}){
             </div>
         </div>
         ))}
-        {selectedColleges.length == 0 && <h5 className="text-5xl/7 font-bold text-red-400">No Colleges Yet! Add a College from the "Home" Tab.</h5>}
+        {selectedColleges.length === 0 && (<h5 className="text-5xl/7 font-bold text-red-400">No Colleges Yet! Add a College from the &quot;Home&quot; Tab.</h5>)}
         </>
-        
     );
 }

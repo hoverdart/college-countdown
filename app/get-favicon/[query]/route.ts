@@ -1,5 +1,4 @@
 // Cache for 30 days
-export let revalidate = 60 * 60 * 24 * 30;
 export const dynamicParams = true;
 export const dynamic = "force-static";
 
