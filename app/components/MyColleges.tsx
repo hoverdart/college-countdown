@@ -33,7 +33,7 @@ export default function MyColleges({allColleges}:{allColleges:Data}){
         <>
         {selectedColleges.map((eachElement, index) => (
         <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600" key={index} onDoubleClick={()=>handleDoubleClick(eachElement!.id)}>
-            <img src={`/get-favicon/${encodeURIComponent(eachElement!.name + " Website")}`} alt="College Name" width ={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" /> 
+            <img src={`/get-favicon/${encodeURIComponent(eachElement!.name + " website")}`} alt="College Name" width ={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" /> 
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                 {eachElement!.name}

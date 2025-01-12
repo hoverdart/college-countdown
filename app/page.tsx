@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <>
     <NavBar />
-    <h5 className="text-sm font-bold text-gray-400 gap-2 sm:px-6 font-[family-name:var(--font-geist-sans)] underline decoration-sky-500">Double-Click Any College to Select and Deselect.</h5>
+    <h5 className="text-sm font-bold text-gray-400 gap-2 px-6 font-[family-name:var(--font-geist-sans)] underline decoration-sky-500">Double-Click Any College to Select and Deselect.</h5>
     <div className="p-6 font-[family-name:var(--font-geist-sans)]">
         <CollegeTable colDecisions={decisions} colPastDecisions={passedDecisions} />
       </div>

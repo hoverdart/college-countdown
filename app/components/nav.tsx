@@ -5,7 +5,7 @@ import RandomQuote from "./RandomQuote"
 
 export default function NavBar() {
     return (
-        <div className="flex flex-row items-start mx-auto justify-between gap-2 sm:px-6 sm:pt-6 font-[family-name:var(--font-geist-sans)]">
+        <div className="flex flex-row items-start tracking-tight justify-between gap-2 px-6 pt-6 font-[family-name:var(--font-geist-sans)]">
                 <div>
                 <h1 className="text-2xl/7 font-bold text-gray-900 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">College Countdown</h1>
                 <RandomQuote />

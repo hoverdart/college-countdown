@@ -25,7 +25,7 @@ export async function GET(
   const url = queryParams.get("uddg");
 
   const imageRes = await fetch(
-    `https://www.google.com/s2/favicons?domain=${url}&sz=4096`
+    `https://www.google.com/s2/favicons?domain=${url}&sz=2048`
   );
 
   return new Response(imageRes.body, {
