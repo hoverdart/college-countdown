@@ -33,7 +33,7 @@ export default function MyColleges({allColleges}:{allColleges:Data}){
     return( //src={`/get-favicon/${encodeURIComponent(college.name + " Website")}`}
         <>
         {selectedColleges.map((eachElement, index) => (
-        <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 group relative" key={index}>
+        <div className="w-70 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 group relative" key={index}>
 
             <div className="opacity-0 group-hover:opacity-100 transition-all">
                 <IoRemoveCircleOutline className="absolute top-2 right-2 text-red-700 hover:text-red-900 text-3xl transition-all hover:scale-125 active:scale-100" onDoubleClick={()=>handleDoubleClick(eachElement!.id)} /> 
