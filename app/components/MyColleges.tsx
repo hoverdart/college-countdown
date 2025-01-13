@@ -3,6 +3,7 @@ import { selectedCols } from "../atoms"
 import { useAtom } from 'jotai';
 import {Data} from "../dataArrs";
 import EachCountdown from "./EachCountdown";
+import { IoRemoveCircleOutline } from "react-icons/io5";
 
 function formatDate(isoDate: string | number | Date) {
     const date = new Date(isoDate);
@@ -32,7 +33,12 @@ export default function MyColleges({allColleges}:{allColleges:Data}){
     return( //src={`/get-favicon/${encodeURIComponent(college.name + " Website")}`}
         <>
         {selectedColleges.map((eachElement, index) => (
-        <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600" key={index} onDoubleClick={()=>handleDoubleClick(eachElement!.id)}>
+        <div className="w-64 p-4 bg-white transition-all border rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-50 dark:hover:bg-gray-600 group relative" key={index}>
+
+            <div className="opacity-0 group-hover:opacity-100 transition-all">
+                <IoRemoveCircleOutline className="absolute top-2 right-2 text-red-700 hover:text-red-900 text-3xl transition-all hover:scale-125 active:scale-100" onDoubleClick={()=>handleDoubleClick(eachElement!.id)} /> 
+            </div>
+
             <img src={`/get-favicon/${encodeURIComponent(eachElement!.name + " website logo wikipedia")}`} alt="College Name" width ={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" /> 
 
             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
