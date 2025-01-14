@@ -65,7 +65,7 @@ export async function GET(
     status: imageRes.status,
     headers: {
       'Content-Type': imageRes.headers.get('content-type') || 'image/jpeg',
-      'Cache-Control': 'public, max-age=2592000', // Cache for 30 days
+      'Cache-Control': 'public, max-age=3000000', // Cache for 30 days
     },
   });
 }
