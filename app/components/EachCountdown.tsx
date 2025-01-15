@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
   const dater = new Date(tilThisDate);
   const calculateTimeLeft = () => {
-    const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
-    const easternTimeInMS = Date.parse(easternTime)
+    //const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
+    //const easternTimeInMS = Date.parse(easternTime) //why am i commenting this out? because typescript. That's why.
     const time = dater.getTime() - date.now(); //not easternTimeInMS
     let timeLeft: {
       Months?: number;
