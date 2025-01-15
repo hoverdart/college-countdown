@@ -5,7 +5,7 @@ const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
   const calculateTimeLeft = () => {
     const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
     const easternTimeInMS = Date.parse(easternTime)
-    const time = dater.getTime() - easternTimeInMS; //Date.now()
+    const time = dater.getTime() - date.now(); //not easternTimeInMS
     let timeLeft: {
       Months?: number;
       days?: number;
