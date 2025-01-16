@@ -38,13 +38,11 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
         ...cols.map((col) => allColleges.find((college) => college.id === col)).filter(Boolean),
         ...customs
     ];
-
     const selectedColleges = selected.sort((a, b) => {
         const dateA = new Date(a!.decisionDate).getTime();
         const dateB = new Date(b!.decisionDate).getTime();
         return dateA - dateB;
     });
-
     const handleAddCol = () => {
         const formattedId = generateRandomString();
         setCustoms((prevCustoms) => [
@@ -55,12 +53,10 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
         setType('');
         setDate('');
     };
-
     const handleDoubleClick = (colID: string) => {
         setSelectedCols((prevCols) => prevCols.includes(colID) ? prevCols.filter((id) => id !== colID) : [...prevCols, colID]);
         setCustoms((prevCustoms) => prevCustoms.some((custom) => custom.id === colID) ? prevCustoms.filter((custom) => custom.id !== colID) : [...prevCustoms]);
     };
-
     return (
         <>
             {selectedColleges.map((eachElement, index) => (
@@ -103,9 +99,6 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                     </div>
                 </div>
             </form>
-            {selectedColleges.length === 0 && (
-                <h5 className="text-2xl/7 font-bold text-red-400 mt-5">No Colleges Yet! Add a College from the &quot;Home&quot; Tab.</h5>
-            )}
         </>
     );
 }
