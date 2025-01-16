@@ -17,7 +17,6 @@ function formatDate(isoDate: string | number | Date) {
         hour12: true // 12-hour format
     }).replace(',', '');
 }
-
 function generateRandomString(length = 10) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -26,14 +25,12 @@ function generateRandomString(length = 10) {
     }
     return result;
 }
-
 export default function MyColleges({ allColleges }: { allColleges: Data }) {
     const [cols, setSelectedCols] = useAtom(selectedCols);
     const [customs, setCustoms] = useAtom(customCols);
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [date, setDate] = useState('');
-
     const selected = [
         ...cols.map((col) => allColleges.find((college) => college.id === col)).filter(Boolean),
         ...customs
