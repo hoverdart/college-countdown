@@ -1,7 +1,8 @@
+import { NextResponse } from 'next/server';
+
 import { JSDOM } from "jsdom";
-import { dummyData } from "./dummyData";
-// Refetch every 4 hours
-export const revalidate = 60 * 60 * 4;
+import { dummyData } from "../dummyData";
+
 
 export type RawData = {
     Name: string;
@@ -230,5 +231,13 @@ const fetchData = async () => {
     const data = rawDataToData(rawData as RawData);
     return { data };
 };
-const { data } = await fetchData();
-export { data };
+
+export async function GET() {
+    try {
+      const data = await fetchData(); 
+      return NextResponse.json({ ok: true, data });
+    } catch (error) {
+      console.error(error);
+      return NextResponse.json({ ok: false, error: 'Error fetching data' }, { status: 500 });
+    }
+  }
