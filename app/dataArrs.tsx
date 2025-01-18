@@ -1,7 +1,6 @@
 import { JSDOM } from "jsdom";
-import { dummyData } from "./dummyData";
+import { dummyData } from "./api/crons/dummyData";
 // Refetch every 4 hours
-export const revalidate = 60 * 60 * 4;
 
 export type RawData = {
     Name: string;

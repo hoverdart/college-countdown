@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { JSDOM } from "jsdom";
-import { dummyData } from "../dummyData";
+import { dummyData } from "./dummyData";
 
 
 export type RawData = {
@@ -232,12 +232,5 @@ const fetchData = async () => {
     return { data };
 };
 
-export async function GET() {
-    try {
-      const data = await fetchData(); 
-      return NextResponse.json({ ok: true, data });
-    } catch (error) {
-      console.error(error);
-      return NextResponse.json({ ok: false, error: 'Error fetching data' }, { status: 500 });
-    }
-  }
+const allData = await fetchData()
+export {allData}

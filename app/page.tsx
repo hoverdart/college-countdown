@@ -11,21 +11,21 @@ export type Data = {
   id: string;
 }[];
 
-//const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
-const easternTimeInMS = Date.now(); //.parse(easternTime)
-const passedDecisions: Data = [];
-const decisions: Data = [];
-for(let i=0; i<data.length; i++){
-    const dater = new Date(data[i].decisionDate);
-    if(dater.getTime() - easternTimeInMS < -259200000){
-        passedDecisions.push(data[i]);
-    }else{
-        decisions.push(data[i]);
-    }
-}
-passedDecisions.reverse();
 
 export default function Home() {
+  //const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/New_York'});
+  const easternTimeInMS = Date.now(); //.parse(easternTime)
+  const passedDecisions: Data = [];
+  const decisions: Data = [];
+  for(let i=0; i<data.length; i++){
+    const dater = new Date(data[i].decisionDate);
+    if(dater.getTime() - easternTimeInMS < -259200000){
+      passedDecisions.push(data[i]);
+    }else{
+      decisions.push(data[i]);
+    }
+  }
+passedDecisions.reverse();
   return (
     <>
     <NavBar />
