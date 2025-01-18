@@ -25,7 +25,7 @@ export default function Home() {
       decisions.push(data[i]);
     }
   }
-passedDecisions.reverse();
+  passedDecisions.reverse();
   return (
     <>
     <NavBar />

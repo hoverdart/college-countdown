@@ -193,9 +193,6 @@ function rawDateToDateString(rawDate: string): string {
   }
 }
 
-
-
-
 // This is the actual fetchData function
 const fetchData = async () => {
     if (process.env.NODE_ENV === 'development') {
@@ -213,10 +210,6 @@ const fetchData = async () => {
     const res = await fetch(
       `https://applyingto.college/decision-calendar/class-of-${CLASS_YEAR}`
     );
-    const resDateStr = res.headers.get("Date");
-    const revalidateDate = resDateStr ? new Date(resDateStr) : new Date();
-  
-    console.log("Refetch", revalidateDate);
   
     const html = await res.text();
     const dom = new JSDOM(html);
@@ -231,4 +224,5 @@ const fetchData = async () => {
 };
 
 const allData = await fetchData()
+console.log("data refetched")
 export {allData}
