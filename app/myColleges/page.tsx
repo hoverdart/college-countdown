@@ -1,5 +1,5 @@
 import NavBar from "../components/nav"
-import {data} from "../dataArrs"
+import {data} from "../api/dataArrs"
 import MyColleges from "../components/MyColleges"
 
 export default function Home() { //quote is gray-400

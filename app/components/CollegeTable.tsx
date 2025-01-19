@@ -2,7 +2,7 @@
 import EachCountdown from "./EachCountdown";
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { selectedCols } from "../atoms"
+import { selectedCols } from "../api/atoms"
 
 function formatDate(isoDate: string | number | Date) {
     const date = new Date(isoDate);
@@ -58,7 +58,7 @@ return (
               key={index}
               className={`${
                 cols.includes(eachElement.id) ? selectedCSS : unselectedCSS
-              } transition-all duration-300 ease-in-out relative hover:z-10`}
+              } transition-all duration-300 ease-in-out relative hover:z-10 `}
               onDoubleClick={() => handleDoubleClick(eachElement.id)}
             >
               <td className="px-6 py-4 font-medium">{eachElement.name}</td>
@@ -67,7 +67,7 @@ return (
                 {eachElement.notes !== "" && ` (${eachElement.notes})`}
               </td>
               <td className="px-6 py-4">{formatDate(eachElement.decisionDate)}</td>
-              <td className="px-6 py-4">
+              <td className="px-6 py-4 w-64">
                 <EachCountdown tilThisDate={eachElement.decisionDate} />
               </td>
             </tr>
@@ -101,7 +101,7 @@ return (
                 key={index}
                 className={`${
                   cols.includes(eachElement.id) ? selectedCSS : unselectedCSS
-                } transition-all duration-300 ease-in-out relative hover:scale-105 hover:z-10`}
+                } transition-all duration-300 ease-in-out relative`}
                 onDoubleClick={() => handleDoubleClick(eachElement.id)}
               >
                 <td className="px-6 py-4 font-medium">{eachElement.name}</td>

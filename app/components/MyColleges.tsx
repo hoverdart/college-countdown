@@ -1,8 +1,8 @@
 "use client";
-import { selectedCols, customCols } from "../atoms";
+import { selectedCols, customCols } from "../api/atoms";
 import { useState } from "react";
 import { useAtom } from 'jotai';
-import { Data } from "../dataArrs";
+import { Data } from "../api/dataArrs";
 import EachCountdown from "./EachCountdown";
 import { IoRemoveCircleOutline, IoAddCircleOutline } from "react-icons/io5";
 
@@ -61,7 +61,7 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                     <div className="opacity-0 group-hover:opacity-100 transition-all">
                         <IoRemoveCircleOutline className="absolute top-2 right-2 text-red-700 hover:text-red-900 text-3xl transition-all hover:scale-125 active:scale-100" onDoubleClick={() => handleDoubleClick(eachElement!.id)} />
                     </div>
-                    <img src={`/get-favicon/${encodeURIComponent(eachElement!.name + " website logo png wikipedia")}`} alt="College Name" width={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" />
+                    <img src={`/api/getImage/${encodeURIComponent(eachElement!.name + " website logo png wikipedia")}`} alt="College Name" width={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" />
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                         {eachElement!.name}
                     </h3>
