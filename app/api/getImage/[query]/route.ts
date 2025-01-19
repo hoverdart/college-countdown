@@ -13,8 +13,8 @@ export async function GET(
   console.log(`Generating image for ${query}`);
 
   // Define API key and CX
-  const apiKey = "AIzaSyDj8hiv4DNPBN-3NxceSYDQAOHWm6Jde4M";
-  const cx = "e026303e00fa0488e";
+  const apiKey = process.env.IMAGE_API_KEY;
+  const cx = process.env.IMAGE_CX;
 
   // Fetch high-resolution image using Google Custom Search JSON API
   let imageRes;

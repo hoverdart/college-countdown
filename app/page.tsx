@@ -1,6 +1,6 @@
 import CollegeTable from "./components/CollegeTable";
 import NavBar from "./components/nav"
-import {data} from "./dataArrs"
+import {data} from "./api/dataArrs"
 
 export type Data = {
   name: string;

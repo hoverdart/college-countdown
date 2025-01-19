@@ -1,4 +1,4 @@
-import {allData} from "./api/crons/fetchData";
+import {allData} from "./crons/fetchData";
 export type RawData = {
     Name: string;
     Tag: string;
