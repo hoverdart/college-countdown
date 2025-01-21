@@ -24,7 +24,7 @@ export type Data = {
     id: string;
   }[];
 
-export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisions:Data, colPastDecisions:Data}) {
+export default function CollegeTable({decisions}:{decisions: Data}) {
   const [isTableVisible, setIsTableVisible] = useState(false);
   const [cols, setSelectedCols] = useAtom(selectedCols);
   const handleDoubleClick = (colID: string) => {
@@ -35,10 +35,21 @@ export default function CollegeTable({colDecisions, colPastDecisions}:{colDecisi
       return [...prevCols, colID];
     });
   };
-  const selectedCSS =
-  "bg-sky-100 border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600";
-  const unselectedCSS =
-  "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
+
+  const selectedCSS ="bg-sky-100 border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600";
+  const unselectedCSS ="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
+  //Formatting passed vs. unpassed decisions
+  const easternTimeInMS = Date.now(); //.parse(easternTime)
+  const colPastDecisions: Data = [];
+  const colDecisions: Data = [];
+  for(let i=0; i<decisions.length; i++){
+    const dater = new Date(decisions[i].decisionDate);
+    if(dater.getTime() - easternTimeInMS < -259200000){
+      colPastDecisions.push(decisions[i]);
+    }else{
+      colDecisions.push(decisions[i]);
+    }
+  }
 
 return (
   <>
