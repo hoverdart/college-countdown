@@ -2,7 +2,7 @@
 import { selectedCols, customCols } from "../api/atoms";
 import { useState } from "react";
 import { useAtom } from 'jotai';
-import { Data } from "../api/dataArrs";
+import { Data } from "../api/dummyData";
 import EachCountdown from "./EachCountdown";
 import { IoRemoveCircleOutline, IoAddCircleOutline } from "react-icons/io5";
 
