@@ -196,7 +196,7 @@ export default async function Home() {
         ? currentDate.getFullYear() + 4
         : currentDate.getFullYear() + 5;
     const res = await fetch(
-      `https://applyingto.college/decision-calendar/class-of-${CLASS_YEAR}`, {next:{revalidate:86400}}
+      `https://applyingto.college/decision-calendar/class-of-${CLASS_YEAR}`, {next:{revalidate:21600}}
     );
     const html = await res.text();
     const dom = new JSDOM(html);
