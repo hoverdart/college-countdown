@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { IoHomeOutline, IoSchoolOutline } from "react-icons/io5";
+import { FaRegCircleQuestion } from "react-icons/fa6";
 import RandomQuote from "./RandomQuote"
 
 export default function NavBar() {
@@ -10,7 +11,10 @@ export default function NavBar() {
                 <h1 className="text-2xl/7 font-bold text-gray-900 dark:text-white sm:truncate sm:text-3xl sm:tracking-tight">College Countdown</h1>
                 <RandomQuote />
                 </div>
-                <div className="flex flex-row gap-8">
+                <div className="flex flex-row gap-5">
+                <Link key="About the Site" href="/about">
+                    <FaRegCircleQuestion className="text-2xl text-gray-900 dark:text-white transition-all hover:scale-125 hover:text-yellow-300"/>
+                </Link>
                 <Link key="My Colleges" href="/myColleges">
                     <IoSchoolOutline className="text-2xl text-gray-900 dark:text-white transition-all hover:scale-125 hover:text-sky-300"/>
                 </Link>
