@@ -73,12 +73,12 @@ export default function CollegeTable({ decisions }: { decisions: Data }) {
         <div className="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pb-4 pointer-events-none">
           <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/></svg>
         </div>
-        <input type="text" placeholder="Search For A College..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full p-2 pt-2 ps-10 mb-4 border rounded-md dark:bg-gray-800 dark:text-gray-300"/>
+        <input type="text" placeholder="Search For A College..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full p-2 pt-2 ps-10 mb-4 border shadow-xl rounded-md dark:bg-gray-800 dark:text-gray-300"/>
       </div>
 
       <div className="relative rounded-xl w-full overflow-x-auto shadow-xl bg-white dark:bg-slate-900 p-4">
         <table className="min-w-full table-auto text-md text-gray-700 dark:text-gray-300">
-          <caption className="p-3 text-xl font-bold text-gray-50 transition-all bg-white dark:bg-gray-800">
+          <caption className="p-3 text-xl font-bold text-gray-900 dark:text-gray-50 transition-all bg-white dark:bg-gray-800">
           <div className="flex flex-row justify-between items-center">
             <span>Ongoing Decisions</span>
             <FaAngleDown className="hover:text-gray-400 transition-transform duration-200 hover:-translate-y-1 hover:translate-y-1" onClick={()=>{setIsTableVisible(!isTableVisible)}}/>
