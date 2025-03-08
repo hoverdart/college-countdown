@@ -44,7 +44,7 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
         const formattedId = generateRandomString();
         setCustoms((prevCustoms) => [
             ...prevCustoms,
-            { name, tag: type, decisionDate: date, notes: "", id: formattedId }
+            { name, tag: type, decisionDate: date, notes: "", confirmed:"", id: formattedId }
         ]);
         setName('');
         setType('');
@@ -61,7 +61,7 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                     <div className="opacity-0 group-hover:opacity-100 transition-all">
                         <IoRemoveCircleOutline className="absolute top-2 right-2 text-red-700 hover:text-red-900 text-3xl transition-all hover:scale-125 active:scale-100" onDoubleClick={() => handleDoubleClick(eachElement!.id)} />
                     </div>
-                    <img src={`/api/getImage/${encodeURIComponent(eachElement!.name + " website logo png wikipedia")}`} alt="College Name" width={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" />
+                    <img src={`/api/getImage/${encodeURIComponent(eachElement!.name + " official logo site:wikipedia.org OR site:.edu OR site:commons.wikimedia.org filetype:png")}`} alt="College Name" width={128} height={128} className="h-[128px] w-[128px] object-contain item-center rounded-md mb-4" />
                     <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                         {eachElement!.name}
                     </h3>
@@ -74,6 +74,11 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                     <div className="text-sm font-medium text-red-600 font-bold">
                         <span className="font-bold text-gray-600 dark:text-gray-400">Countdown:</span> <EachCountdown tilThisDate={eachElement!.decisionDate} />
                     </div>
+
+                    <div className="text-xs text-gray-400 mt-1 text-left justify-left font-semibold">
+                        <span>Decision: <span className={eachElement!.confirmed === "Confirmed" ? `text-green-600` : eachElement!.confirmed === "Approximate" ? `text-yellow-400` :`text-red-600`}>{eachElement!.confirmed}</span></span>
+                    </div>
+                    
                 </div>
             ))}
             <form>
@@ -94,6 +99,7 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                         <label className="block mb-1 text-sm text-gray-600 dark:text-gray-400 font-bold">Decision Date</label>
                         <input type="datetime-local" id="date" className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value={date} onChange={(e) => setDate(e.target.value)} />
                     </div>
+
                 </div>
             </form>
         </>

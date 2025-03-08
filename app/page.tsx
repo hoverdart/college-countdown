@@ -94,6 +94,7 @@ function rawDataToData(rawData: RawData): Data {
       tag: college.Tag,
       decisionDate: dateStr,
       notes: college.Notes,
+      confirmed: college.Confirmed,
       id,
     });
   }

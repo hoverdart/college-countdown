@@ -17,6 +17,7 @@ export type Data = {
     tag: string;
     decisionDate: string;
     notes: string;
+    confirmed: string;
     /** Name + tag */
     id: string;
 }[];

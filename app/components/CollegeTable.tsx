@@ -22,6 +22,8 @@ export type Data = {
   tag: string;
   decisionDate: string;
   notes: string;
+  confirmed: string;
+  /** Name + tag */
   id: string;
 }[];
 
@@ -62,10 +64,8 @@ export default function CollegeTable({ decisions }: { decisions: Data }) {
     );
   };
 
-  const selectedCSS =
-    "bg-sky-100 border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600";
-  const unselectedCSS =
-    "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
+  const selectedCSS = "bg-sky-100 border-b dark:bg-sky-800 dark:border-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600";
+  const unselectedCSS = "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600";
 
   return (
     <div className = "p-6">
@@ -89,6 +89,7 @@ export default function CollegeTable({ decisions }: { decisions: Data }) {
               <th className="px-6 py-3 text-left font-semibold">College Name</th>
               <th className="px-6 py-3 text-left font-semibold">Decision Type</th>
               <th className="px-6 py-3 text-left font-semibold">Release Date</th>
+              <th className="px-6 py-3 text-left font-semibold">Decision Status</th>
               <th className="px-6 py-3 text-left text-red-500 font-semibold">Countdown</th>
             </tr>
           </thead> 
@@ -106,6 +107,7 @@ export default function CollegeTable({ decisions }: { decisions: Data }) {
                   {eachElement.notes && ` (${eachElement.notes})`}
                 </td>
                 <td className="px-6 py-4">{formatDate(eachElement.decisionDate)}</td>
+                <td className={`px-6 py-4 font-semibold ${eachElement.confirmed === "Confirmed" ? `text-green-600` : eachElement.confirmed === "Approximate" ? `text-yellow-400` :`text-red-600`}`}>{eachElement.confirmed}</td>
                 <td className="px-6 py-4 w-64">
                   <EachCountdown tilThisDate={eachElement.decisionDate} />
                 </td>
