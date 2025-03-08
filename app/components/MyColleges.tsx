@@ -76,7 +76,7 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
                     </div>
 
                     <div className="text-xs text-gray-400 mt-1 text-left justify-left font-semibold">
-                        <span>Decision: <span className={eachElement!.confirmed === "Confirmed" ? `text-green-600` : eachElement!.confirmed === "Approximate" ? `text-yellow-400` :`text-red-600`}>{eachElement!.confirmed}</span></span>
+                        {eachElement!.confirmed !== "" && <span>Decision: <span className={eachElement!.confirmed === "Confirmed" ? `text-green-600` : eachElement!.confirmed === "Approximate" ? `text-yellow-400` :`text-red-600`}>{eachElement!.confirmed}</span></span>}
                     </div>
                     
                 </div>
