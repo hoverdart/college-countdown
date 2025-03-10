@@ -73,7 +73,7 @@ function rawDataToData(rawData: RawData): Data {
     const date = new Date(dateStr);
     if (!(date instanceof Date && isFinite(+date))) {
       console.warn(`${name} has no valid decision date. Skipping...`);
-      continue;
+      //continue;
     }
 
     // Generate a stable id
@@ -100,84 +100,66 @@ function rawDataToData(rawData: RawData): Data {
     });
   }
   const data = preData.sort((a, b) => {
-    const dateA = new Date(a.decisionDate).getTime(); // Fallback to 0 for invalid dates
-    const dateB = new Date(b.decisionDate).getTime();
+    let aD = a.decisionDate;
+    let bD = b.decisionDate;
+    if(aD.toString().includes(" → ")){ //One of the weird arrow ones
+      aD = aD.split(" → ")[1]
+    }
+    if(bD.toString().includes(" → ")){ //One of the weird arrow ones
+      bD = bD.split(" → ")[1]
+    }
+    const dateA = new Date(aD).getTime(); // Fallback to 0 for invalid dates
+    const dateB = new Date(bD).getTime();
     return dateA - dateB;
   });
   return data;
 }
 
 function rawDateToDateString(rawDate: string): string {
-  const standardOffsets = {
+  const standardOffsets: { [key: string]: string } = {
     EST: "-0500",
+    EDT: "-0400",
     CST: "-0600",
+    CDT: "-0500",
     MST: "-0700",
+    MDT: "-0600",
     PST: "-0800",
+    PDT: "-0700",
     AKST: "-0900",
     HST: "-1000", // Hawaii doesn't observe DST
   };
 
-  function isDST(date: Date, timezone: string) {
-    if (timezone !== "EST" && timezone !== "EDT") {
-      return false; // DST check only for EST/EDT
-    }
-
-    // Get year from date
-    const year = date.getFullYear();
-
-    // DST starts second Sunday in March
-    const dstStart = new Date(year, 2, 1); // March 1
-    dstStart.setDate(1 + ((14 - dstStart.getDay()) % 7) + 7); // Second Sunday
-
-    // DST ends first Sunday in November
-    const dstEnd = new Date(year, 10, 1); // November 1
-    dstEnd.setDate(1 + ((7 - dstEnd.getDay()) % 7)); // First Sunday
-
-    // Check if date is within DST period
-    return date >= dstStart && date < dstEnd;
-  }
-
-  function getTimezoneOffset(
-    timezone: keyof typeof standardOffsets,
-    date: Date
-  ) {
-    if (timezone === "HST") return standardOffsets.HST; // Hawaii doesn't do DST
-
-    const standardOffset = standardOffsets[timezone];
-    if (!standardOffset) return null;
-
-    // During DST, move forward one hour (subtract 1 from offset)
-    return isDST(date, timezone)
-      ? `${standardOffset.slice(0, 1)}${String(
-          parseInt(standardOffset.slice(1)) - 100
-        ).padStart(4, "0")}`
-      : standardOffset;
+  function getTimezoneOffset(timezone: string): string | null {
+    return standardOffsets[timezone] || null;
   }
 
   try {
-    // Assume PST if no timezone is provided
+    // Extract timezone from the string (default to PST if missing)
     const tzMatch = rawDate.match(/\(([A-Z]+)\)/);
-    const timezone = tzMatch ? tzMatch[1] : "PST"; // Default to PST if no timezone info
+    const timezone = tzMatch ? tzMatch[1] : "PST"; // Default to PST
+
+    // Remove timezone from the raw date string
     const cleanDateStr = rawDate.replace(/\s*\([A-Z]+\)/, "");
 
-    // First create a date object without timezone to get the date
+    // Parse the date without the timezone
     const tempDate = new Date(cleanDateStr);
 
-    // Now get the correct offset based on the date
-    const offset = getTimezoneOffset(
-      timezone as keyof typeof standardOffsets,
-      tempDate
-    );
+    // Get correct timezone offset
+    const offset = getTimezoneOffset(timezone);
     if (!offset) {
       console.error(`Unknown timezone: ${timezone}`);
-      return new Date(cleanDateStr).toISOString(); // Return a fallback ISO string
+      return tempDate.toISOString(); // Return a fallback ISO string
     }
 
-    // Adjust the date string by adding the correct time zone offset (PST assumed)
-    return new Date(`${cleanDateStr} GMT${offset}`).toISOString();
+    // Convert to UTC by adjusting with the offset
+    const utcDate = new Date(
+      tempDate.getTime() - parseInt(offset) / 100 * 3600000
+    );
+
+    return utcDate.toISOString();
   } catch (error) {
     console.error(`Error parsing date: ${rawDate}`, error);
-    return rawDate; // Return the raw input if it cannot be parsed
+    return rawDate; // Return raw input if parsing fails
   }
 }
 

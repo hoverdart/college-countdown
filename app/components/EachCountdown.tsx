@@ -1,6 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 const CountdownTimer = ({ tilThisDate }: { tilThisDate: string }) => {
+  if(typeof tilThisDate === "string"){
+    if(tilThisDate.toString().includes(" → ")){ //One of the weird arrow ones
+      tilThisDate = tilThisDate.split(" → ")[1]
+    }
+  }
   const dater = new Date(tilThisDate);
   const calculateTimeLeft = () => {
     //const easternTime = new Date().toLocaleString("en-US", {timeZone: 'America/Los_Angeles'});

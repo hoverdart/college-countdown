@@ -6,6 +6,11 @@ import EachCountdown from "./EachCountdown";
 import { FaAngleDown } from "react-icons/fa6";
 
 function formatDate(isoDate: string | number | Date) {
+  if(typeof isoDate === "string"){
+    if(isoDate.toString().includes(" → ")){ //One of the weird arrow ones
+      return isoDate;
+    }
+  }
   const date = new Date(isoDate);
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -38,13 +43,15 @@ export default function CollegeTable({ decisions }: { decisions: Data }) {
   const colDecisions: Data = [];
 
   decisions.forEach(decision => {
-    const decisionTime = new Date(decision.decisionDate).getTime();
+    let decisionTime = new Date(decision.decisionDate).getTime();
+    if(decision.decisionDate.toString().includes(" → ")) //One of the weird arrow ones
+      decisionTime = new Date(decision.decisionDate.split(" → ")[1]).getTime();
     if (decisionTime - easternTimeInMS < -259200000) {
       colPastDecisions.push(decision);
     } else {
       colDecisions.push(decision);
     }
-  });
+    });
 
   const filteredDecisions = colDecisions.filter(({ name, tag }) =>
     name.toLowerCase().includes(searchQuery.toLowerCase()) ||

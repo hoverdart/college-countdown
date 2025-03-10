@@ -7,14 +7,19 @@ import EachCountdown from "./EachCountdown";
 import { IoRemoveCircleOutline, IoAddCircleOutline } from "react-icons/io5";
 
 function formatDate(isoDate: string | number | Date) {
+    if(typeof isoDate === "string"){
+        if(isoDate.toString().includes(" → ")){ //One of the weird arrow ones
+        return isoDate;
+        }
+    }
     const date = new Date(isoDate);
     return date.toLocaleDateString('en-US', {
         year: 'numeric',
-        month: 'short', // "Jan" instead of "January"
+        month: 'short',
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: true // 12-hour format
+        hour12: true
     }).replace(',', '');
 }
 function generateRandomString(length = 10) {
@@ -36,8 +41,16 @@ export default function MyColleges({ allColleges }: { allColleges: Data }) {
         ...customs
     ];
     const selectedColleges = selected.sort((a, b) => {
-        const dateA = new Date(a!.decisionDate).getTime();
-        const dateB = new Date(b!.decisionDate).getTime();
+        let aD = a!.decisionDate;
+        let bD = b!.decisionDate;
+        if(aD.toString().includes(" → ")){ //One of the weird arrow ones
+            aD = aD.split(" → ")[1]
+        }
+        if(bD.toString().includes(" → ")){ //One of the weird arrow ones
+            bD = bD.split(" → ")[1]
+        }
+        const dateA = new Date(aD).getTime(); // Fallback to 0 for invalid dates
+        const dateB = new Date(bD).getTime();
         return dateA - dateB;
     });
     const handleAddCol = () => {
