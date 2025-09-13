@@ -5,6 +5,7 @@ export const dummyData = [{ Name: "American University", Tag: "ED", Confirmed: "
 
 //Types 
 export type RawData = {
+    Status: string; //changed from Confirmed bc of new table
     Name: string;
     Tag: string;
     Confirmed: string;
